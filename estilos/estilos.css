@@ -1,0 +1,70 @@
+/* Eliminamos márgenes y ponemos fondo de página negro */
+html,
+body {
+  margin: 0;
+  background: #000;
+  /* provee una sugerencia al navegador acerca del algoritmo que debe usar para escalar imágenes*/
+  /*  el valor pixelated permite desactivar el suavizado de imágenes cuando se amplia su tamaño. */
+  image-rendering: pixelated;
+}
+
+/* Bern: Animación del personaje */
+#bern {
+  /* Tamaño de la viñeta individual */
+  width: 112px;
+  height: 156px;
+  
+  /* Cómo se establecio un tamaño, centramos */
+  margin: auto;
+  
+  /* Cargamos la imagen */
+  background: url("https://cdn.rawgit.com/ManzDev/cursos-assets/gh-pages/css3/bernard-sprite.png");
+  
+  /* Aplicamos animación "walk" imagen del ciclo de caminata (0.8seg, el código anterior por steps(6) 
+  que es una función de tiempo especial que divide la imagen en los fragmentos que le indiquemos (en nuestro caso 6). , repetimos) */
+  animation: walk .8s steps(6) infinite;
+  
+  /* Posicionamos el personaje sobre el camino de madera. position relative se coloca en relación con su posición normal.*/
+  position: relative;
+  /* el espacio requerido en la parte inferior de un elemento. */
+  bottom: 34px;
+}
+
+/* Animación de personaje caminando: Simplemente mueve el sprite sheet (una imagen con todos los frames o viñetas de la animación del personaje) hacia la izquierda, realizando el movimiento. */
+@keyframes walk {
+   /* va a partir de un primer fotograma (0%)*/
+  /* background-position controla la posición en la que se muestra la imagen de fondo de un elemento.*/
+  /* con la posición de la imagen de fondo a 0 píxeles (inicio de la primera viñeta de la imagen) */
+  0%  { background-position: 0 }
+  /* va a terminar en el último fotograma (100%) 
+  con la posición de la imagen de fondo a -672 píxeles (final de la última viñeta de la imagen)
+  hace que la imagen no camine para atras.*/
+     100% { background-position: -672px }
+}
+
+/* Animación del cielo. */
+#sky {
+    /* llamamos la imagen para el cielo */
+  background: url("https://cdn.rawgit.com/ManzDev/cursos-assets/gh-pages/css3/monkey-sky.png") ;
+  /*   movebg/0.9 seg/lineal/La animación se repetirá siempre.*/
+  animation: movebg 9s linear infinite;
+}
+
+/* Animación del mar. */
+#sea {
+  
+  /* llamamos la imagen del mar */
+  background: url("https://cdn.rawgit.com/ManzDev/cursos-assets/gh-pages/css3/monkey-sea.png") ;
+  animation: movebg 6s linear infinite;
+  /* Posicionamos el mar, para que no solape al cielo */
+  position: relative;
+  top: 145px;
+}
+
+/* Animación para mover cielo y mar */
+@keyframes movebg {
+    /*La animación movebg moverá las imágenes de fondo (cielo y mar,
+     que tienen el mismo ancho) con un background-position desde 550px hasta 0. */
+  0% { background-position: 550px } 
+  100% { background-position: 0 }
+}
